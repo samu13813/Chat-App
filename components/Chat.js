@@ -25,7 +25,7 @@ export default function Chat(props) {
             },
             {
                 _id: 2,
-                text: 'This is a system message',
+                text: `${name} has entered the chat.`,
                 createdAt: new Date(),
                 system: true,
             },
