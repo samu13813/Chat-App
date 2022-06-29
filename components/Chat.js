@@ -1,16 +1,69 @@
-import React from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState, useEffect, useCallback } from "react";
+import { GiftedChat, Bubble } from "react-native-gifted-chat";
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+
 
 export default function Chat(props) {
 
-    //The name / color introduced by the User in the Start window is sent to the Chat window and the title is updated to match user name
     let { name, color } = props.route.params;
-    props.navigation.setOptions({ title: name });
+    const [messages, setMessages] = useState([]);
+    
+    useEffect(() => {
+        //Title is updated to match user name
+        props.navigation.setOptions({ title: name });
+
+        setMessages([
+            {
+                _id: 1,
+                text: 'Hello developer',
+                createdAt: new Date(),
+                user: {
+                    _id: 2,
+                    name: 'React Native',
+                    avatar: 'https://placeimg.com/140/140/any',
+                },
+            },
+            {
+                _id: 2,
+                text: 'This is a system message',
+                createdAt: new Date(),
+                system: true,
+            },
+        ])
+
+    }, []);
+
+    const onSend = useCallback((messages = []) => {
+        setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+    }, [])
+
+    // Customize sender bubble color
+    const renderBubble = (props) => {
+        return (
+            <Bubble
+                {...props}
+                wrapperStyle={{
+                    right: {
+                        backgroundColor: '#000'
+                    }
+                }}
+            />
+        )
+    }
 
     return (
             // User background preference is updated to match selection
             <View style={[{ backgroundColor: color}, styles.container]}>
-                <Text style={styles.text}>Welcome to the Chat!</Text>
+                <GiftedChat
+                    renderBubble={renderBubble.bind()}
+                    messages={messages}
+                    onSend={messages => onSend(messages)}
+                    user={{
+                        _id: 1,
+                    }}
+                />
+                {/* Avoid keyboard to hide chat on android devices */}
+                { Platform.OS === 'androiod' ? <KeyboardAvoidingView behavior='height' /> : null}
             </View>
         );
     }
@@ -18,12 +71,5 @@ export default function Chat(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    text: {
-        color: 'white',
-        fontSize: 16,
     },
 });
