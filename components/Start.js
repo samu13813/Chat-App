@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { View, Text, Pressable, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-
 //Colors added to const to make it easier to use
 const colors = {
     black: "#090C08",
