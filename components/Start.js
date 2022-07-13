@@ -15,7 +15,7 @@ export default function Start(props) {
 
     //Use states to update the name and the background color
     let [name, setName] = useState();
-    let [color, setColor] = useState();
+    let [bgColor, setColor] = useState();
 
 
         return (
@@ -64,7 +64,7 @@ export default function Start(props) {
                         <View style={styles.buttonSpace}>
                         {/* The Start Chatting button sends the user name and background color preference to Chat window */}
                         <Pressable
-                            onPress={() => props.navigation.navigate('Chat', { name: name, color: color })}
+                            onPress={() => props.navigation.navigate('Chat', { name: name, bgColor: bgColor })}
                             style={({ pressed }) => [
                               {
                                 backgroundColor: pressed
