@@ -30,8 +30,6 @@ I chose to create the mobile application using **React Native** due to the follo
 * Use existing skills in JavaScript and React, no need to learn another programming language
 * Large and active community
 
-Further, I'm using **XCode** as an iOS simulator and **Android Studio** as an Android emulator.
-
 I use **Expo** as development environment to develop and test the app.
 
 I use the **React Navigation** third party library to navigate between screens.
