@@ -3,8 +3,6 @@ import {
   View,
   Platform,
   KeyboardAvoidingView,
-  Text,
-  Button,
 } from "react-native";
 import { GiftedChat, Bubble, InputToolbar } from "react-native-gifted-chat";
 import { db } from "../config/firebase";
@@ -233,8 +231,7 @@ export default function Chat(props) {
           user={{
             _id: uid,
             name: name,
-            avatar:
-              "https://placeimg.com/140/140/any",
+            avatar: "https://placeimg.com/140/140/any",
           }}
           showUserAvatar={true}
           showAvatarForEveryMessage={true}
